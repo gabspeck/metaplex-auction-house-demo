@@ -7,6 +7,9 @@ node_modules
 .env.*
 !.env.example
 
+/static/smui.css
+_smui-theme.scss
+
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml
 package-lock.json
