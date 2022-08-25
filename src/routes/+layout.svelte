@@ -2,6 +2,8 @@
     import {onMount} from 'svelte';
     import {clusterApiUrl} from '@solana/web3.js';
     import {ConnectionProvider, WalletMultiButton, WalletProvider} from '@svelte-on-solana/wallet-adapter-ui';
+    import TopAppBar, {Row, Section, Title} from '@smui/top-app-bar'
+    import LayoutGrid, {Cell} from '@smui/layout-grid'
 
     const localStorageKey = 'walletAdapter';
     const network = clusterApiUrl('devnet'); // localhost or mainnet
@@ -19,9 +21,20 @@
     });
 </script>
 
-<WalletProvider {localStorageKey} {wallets} autoConnect />
-<ConnectionProvider {network} />
-<WalletMultiButton />
-<div>
-    <slot />
-</div>
+<TopAppBar variant="static">
+    <Row>
+        <Section>
+            <Title>Auction House demo</Title>
+        </Section>
+        <Section align="end">
+            <WalletProvider {localStorageKey} {wallets} autoConnect/>
+            <ConnectionProvider {network}/>
+            <WalletMultiButton/>
+        </Section>
+    </Row>
+</TopAppBar>
+<LayoutGrid>
+    <Cell span="12">
+        <slot/>
+    </Cell>
+</LayoutGrid>
