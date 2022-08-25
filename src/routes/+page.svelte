@@ -1,2 +1,4 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+    import {walletStore} from '@svelte-on-solana/wallet-adapter-core'
+</script>
+<div>You are{$walletStore.connected ? ' ' : ' not '}connected</div>
