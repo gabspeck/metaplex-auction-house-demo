@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@esbuild-plugins/node-globals-polyfill': ^0.1.1
+  '@material/typography': ^13.0.0
   '@playwright/test': ^1.25.0
   '@rollup/plugin-inject': ^4.0.4
   '@smui/layout-grid': ^6.1.0
@@ -34,6 +35,7 @@ dependencies:
 
 devDependencies:
   '@esbuild-plugins/node-globals-polyfill': 0.1.1
+  '@material/typography': 13.0.0
   '@playwright/test': 1.25.1
   '@rollup/plugin-inject': 4.0.4
   '@smui/layout-grid': 6.1.0_uslzfc62di2n2otc2tvfklnwji

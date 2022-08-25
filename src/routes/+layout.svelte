@@ -4,6 +4,7 @@
     import {ConnectionProvider, WalletMultiButton, WalletProvider} from '@svelte-on-solana/wallet-adapter-ui';
     import TopAppBar, {Row, Section, Title} from '@smui/top-app-bar'
     import LayoutGrid, {Cell} from '@smui/layout-grid'
+    import '../theme/_Typography.scss'
 
     const localStorageKey = 'walletAdapter';
     const network = clusterApiUrl('devnet'); // localhost or mainnet
@@ -20,6 +21,10 @@
         ];
     });
 </script>
+
+<svelte:head>
+    <title>Auction House demo</title>
+</svelte:head>
 
 <TopAppBar variant="static">
     <Row>
