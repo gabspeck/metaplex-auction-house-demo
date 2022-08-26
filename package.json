@@ -11,8 +11,8 @@
 		"test": "playwright test",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
-		"prepare": "pnpm run smui-theme",
-		"smui-theme": "smui-theme compile static/smui.css -i src/theme -i ./node_modules"
+		"prepare": "npm run smui-theme",
+		"smui-theme": "smui-theme compile static/smui.css -i src/theme"
 	},
 	"devDependencies": {
 		"@esbuild-plugins/node-globals-polyfill": "^0.1.1",
@@ -20,6 +20,7 @@
 		"@playwright/test": "^1.25.0",
 		"@rollup/plugin-inject": "^4.0.4",
 		"@smui/layout-grid": "^6.1.0",
+		"@smui/textfield": "^6.1.0",
 		"@smui/top-app-bar": "^6.1.0",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
@@ -37,10 +38,14 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@metaplex-foundation/js": "^0.15.0",
+		"@smui/button": "^6.1.0",
+		"@solana/spl-token": "^0.1.8",
 		"@solana/wallet-adapter-base": "^0.9.16",
 		"@solana/wallet-adapter-wallets": "^0.18.5",
 		"@solana/web3.js": "^1.54.0",
 		"@svelte-on-solana/wallet-adapter-core": "1.0.8-alpha.0",
-		"@svelte-on-solana/wallet-adapter-ui": "1.0.20-alpha.0"
+		"@svelte-on-solana/wallet-adapter-ui": "1.0.20-alpha.0",
+		"bn.js": "^5.2.1"
 	}
 }

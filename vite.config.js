@@ -32,6 +32,11 @@ const config = {
 		rollupOptions: {
 			plugins: [inject({ Buffer: ['buffer', 'Buffer'] }), nodePolyfills({ crypto: true })]
 		}
+	},
+	server: {
+		fs: {
+			allow: ['.yalc']
+		}
 	}
 };
 
