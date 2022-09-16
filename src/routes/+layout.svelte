@@ -3,12 +3,13 @@
 	import { clusterApiUrl } from '@solana/web3.js';
 	import { ConnectionProvider, WalletMultiButton, WalletProvider } from '@svelte-on-solana/wallet-adapter-ui';
 	import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
+	import Textfield from '@smui/textfield';
 	import Tab, { Label } from '@smui/tab';
 	import TabBar from '@smui/tab-bar';
 	import LayoutGrid, { Cell } from '@smui/layout-grid';
 	import '../theme/_Typography.scss';
-	import { titleStore } from '../stores/index.js';
-	import {page} from '$app/stores'
+	import { auctionHouseStore, titleStore } from '../stores/index.js';
+	import { page } from '$app/stores';
 
 	const localStorageKey = 'walletAdapter';
 	const network = clusterApiUrl('devnet'); // localhost or mainnet
@@ -18,7 +19,7 @@
 		'gallery'
 	];
 	let wallets;
-	let activeTab = $page.routeId || 'mint'
+	let activeTab = $page.routeId
 
 	onMount(async () => {
 		const {
