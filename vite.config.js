@@ -22,7 +22,8 @@ const config = {
 	},
 	define: {
 		'process.env.BROWSER': true,
-		'process.env.NODE_DEBUG': JSON.stringify('')
+		'process.env.NODE_DEBUG': JSON.stringify(''),
+		global: 'globalThis'
 	},
 	build: {
 		target: 'esnext',

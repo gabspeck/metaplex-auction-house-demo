@@ -1,66 +1,55 @@
 <script>
+	import 'carbon-components-svelte/css/white.css';
 	import { onMount } from 'svelte';
 	import { clusterApiUrl } from '@solana/web3.js';
 	import { ConnectionProvider, WalletMultiButton, WalletProvider } from '@svelte-on-solana/wallet-adapter-ui';
-	import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
-	import Textfield from '@smui/textfield';
-	import Tab, { Label } from '@smui/tab';
-	import TabBar from '@smui/tab-bar';
-	import LayoutGrid, { Cell } from '@smui/layout-grid';
-	import '../theme/_Typography.scss';
-	import { auctionHouseStore, titleStore } from '../stores/index.js';
-	import { page } from '$app/stores';
+	import { titleStore } from '../stores/index.js';
+	import {
+		Content,
+		Grid,
+		Header,
+		HeaderAction,
+		HeaderNav,
+		HeaderNavItem, HeaderPanelDivider, HeaderPanelLink, HeaderPanelLinks,
+		HeaderUtilities
+	} from 'carbon-components-svelte';
+	import { UserAvatarFilledAlt } from 'carbon-icons-svelte';
 
 	const localStorageKey = 'walletAdapter';
 	const network = clusterApiUrl('devnet'); // localhost or mainnet
-	const tabs = [
-		'mint',
-		'sell',
-		'gallery'
-	];
+	const links = {
+		['/mint']: 'Mint',
+		['/sell']: 'Sell',
+		['/gallery']: 'Gallery'
+	};
 	let wallets;
-	let activeTab = $page.routeId
 
 	onMount(async () => {
-		const {
-			PhantomWalletAdapter
-		} = await import('@solana/wallet-adapter-wallets');
+		const { PhantomWalletAdapter } = await import('@solana/wallet-adapter-wallets');
 
-		wallets = [
-			new PhantomWalletAdapter()
-		];
-
+		wallets = [new PhantomWalletAdapter()];
 	});
 </script>
 
 <svelte:head>
-	<title>{$titleStore}</title>
+	<title>{$titleStore ? `${$titleStore} | ` : ''}Auction House</title>
 </svelte:head>
 
-<LayoutGrid>
-	<Cell span={12}>
-		<TopAppBar variant='static'>
-			<Row>
-				<Section>
-					<Title>Auction House demo</Title>
-				</Section>
-				<Section align='end'>
-					<WalletProvider {localStorageKey} {wallets} autoConnect />
-					<ConnectionProvider {network} />
-					<WalletMultiButton />
-				</Section>
-			</Row>
-		</TopAppBar>
-	</Cell>
-	<Cell span={12}>
-		<TabBar {tabs} let:tab active={activeTab}>
-			<Tab {tab}
-			href='/{tab}'>
-				<Label>{tab}</Label>
-			</Tab>
-		</TabBar>
-	</Cell>
-	<Cell span={12}>
+<Header company='Auction House' platformName='Demo'>
+	<WalletProvider {localStorageKey} {wallets} autoConnect />
+	<ConnectionProvider {network} />
+	<HeaderNav>
+		{#each Object.entries(links) as [href, text]}
+			<HeaderNavItem {href} {text} />
+		{/each}
+	</HeaderNav>
+	<HeaderUtilities>
+		<WalletMultiButton />
+	</HeaderUtilities>
+</Header>
+<Content>
+	<Grid>
+		<h1>{$titleStore}</h1>
 		<slot />
-	</Cell>
-</LayoutGrid>
+	</Grid>
+</Content>
