@@ -10,27 +10,26 @@
 		"check:watch": "svelte-check --tsconfig ./jsconfig.json --watch",
 		"test": "playwright test",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write .",
-		"prepare": "npm run smui-theme",
-		"smui-theme": "smui-theme compile static/smui.css -i src/theme"
+		"format": "prettier --write ."
 	},
 	"devDependencies": {
 		"@esbuild-plugins/node-globals-polyfill": "^0.1.1",
-		"@material/typography": "^13.0.0",
 		"@playwright/test": "^1.25.0",
 		"@rollup/plugin-inject": "^4.0.4",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
-		"carbon-components-svelte": "^0.70.6",
-		"carbon-icons-svelte": "^11.3.0",
+		"autoprefixer": "^10.4.12",
 		"eslint": "^8.16.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-svelte3": "^4.0.0",
+		"postcss": "^8.4.18",
 		"prettier": "^2.6.2",
 		"prettier-plugin-svelte": "^2.7.0",
 		"rollup-plugin-node-polyfills": "^0.2.1",
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.7.1",
+		"svelte-preprocess": "^4.10.7",
+		"tailwindcss": "^3.1.8",
 		"typescript": "^4.7.4",
 		"vite": "^3.0.4"
 	},
@@ -44,6 +43,7 @@
 		"@svelte-on-solana/wallet-adapter-core": "1.0.8-alpha.0",
 		"@svelte-on-solana/wallet-adapter-ui": "1.0.20-alpha.0",
 		"bn.js": "^5.2.1",
-		"eslint-plugin-jsdoc": "^39.3.6"
+		"eslint-plugin-jsdoc": "^39.3.6",
+		"musicbrainz-api": "^0.10.0"
 	}
 }

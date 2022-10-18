@@ -1,55 +1,55 @@
 <script>
-	import 'carbon-components-svelte/css/white.css';
-	import { onMount } from 'svelte';
-	import { clusterApiUrl } from '@solana/web3.js';
-	import { ConnectionProvider, WalletMultiButton, WalletProvider } from '@svelte-on-solana/wallet-adapter-ui';
-	import { titleStore } from '../stores/index.js';
-	import {
-		Content,
-		Grid,
-		Header,
-		HeaderAction,
-		HeaderNav,
-		HeaderNavItem, HeaderPanelDivider, HeaderPanelLink, HeaderPanelLinks,
-		HeaderUtilities
-	} from 'carbon-components-svelte';
-	import { UserAvatarFilledAlt } from 'carbon-icons-svelte';
+  import '../app.css';
+  import { onMount } from 'svelte';
+  import { clusterApiUrl } from '@solana/web3.js';
+  import {
+    ConnectionProvider,
+    WalletMultiButton,
+    WalletProvider
+  } from '@svelte-on-solana/wallet-adapter-ui';
 
-	const localStorageKey = 'walletAdapter';
-	const network = clusterApiUrl('devnet'); // localhost or mainnet
-	const links = {
-		['/mint']: 'Mint',
-		['/sell']: 'Sell',
-		['/gallery']: 'Gallery'
-	};
-	let wallets;
+  const localStorageKey = 'walletAdapter';
+  const network = clusterApiUrl('devnet'); // localhost or mainnet
+  const links = {
+    ['/gallery']: 'Gallery',
+    ['/mint']: 'Mint',
+    ['/sell']: 'Sell'
+  };
+  let wallets;
 
-	onMount(async () => {
-		const { PhantomWalletAdapter } = await import('@solana/wallet-adapter-wallets');
+  onMount(async () => {
+    const { PhantomWalletAdapter } = await import('@solana/wallet-adapter-wallets');
 
-		wallets = [new PhantomWalletAdapter()];
-	});
+    wallets = [new PhantomWalletAdapter()];
+  });
 </script>
 
 <svelte:head>
-	<title>{$titleStore ? `${$titleStore} | ` : ''}Auction House</title>
+  <title>Auction House</title>
 </svelte:head>
 
-<Header company='Auction House' platformName='Demo'>
-	<WalletProvider {localStorageKey} {wallets} autoConnect />
-	<ConnectionProvider {network} />
-	<HeaderNav>
-		{#each Object.entries(links) as [href, text]}
-			<HeaderNavItem {href} {text} />
-		{/each}
-	</HeaderNav>
-	<HeaderUtilities>
-		<WalletMultiButton />
-	</HeaderUtilities>
-</Header>
-<Content>
-	<Grid>
-		<h1>{$titleStore}</h1>
-		<slot />
-	</Grid>
-</Content>
+<header class="bg-purple-500 p-30">
+  <div class="flex justify-between items-center container m-auto">
+    <nav class="flex ml-2 text-xl">
+      {#each Object.entries(links) as [href, text]}
+        <a class="text-opacity-50 text-white hover:text-opacity-100 pr-5" {href}>{text}</a>
+      {/each}
+    </nav>
+    <div class="p-2">
+      <WalletProvider {localStorageKey} {wallets} autoConnect />
+      <ConnectionProvider {network} />
+      <WalletMultiButton />
+    </div>
+  </div>
+</header>
+<div class="p-30 flex justify-center">
+  <div class="container">
+    <slot/>
+  </div>
+</div>
+
+<style global>
+  .container {
+    max-width: 1200px;
+  }
+</style>
