@@ -28,9 +28,9 @@
   <title>Auction House</title>
 </svelte:head>
 
-<header class="bg-purple-500 p-30">
+<header class="bg-gradient-to-r from-solana-purple to-solana-green p-30">
   <div class="flex justify-between items-center container m-auto">
-    <nav class="flex ml-2 text-xl">
+    <nav class="flex text-xl">
       {#each Object.entries(links) as [href, text]}
         <a class="text-opacity-50 text-white hover:text-opacity-100 pr-5" {href}>{text}</a>
       {/each}
