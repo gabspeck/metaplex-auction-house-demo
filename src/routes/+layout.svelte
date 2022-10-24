@@ -44,7 +44,9 @@
 </header>
 <div class="p-30 flex justify-center">
   <div class="container">
-    <slot/>
+    <div class='flex justify-between flex-wrap m-auto p-2'>
+      <slot/>
+    </div>
   </div>
 </div>
 

@@ -7,6 +7,6 @@ import { Metaplex } from '@metaplex-foundation/js';
  * @type {Metaplex}
  */
 export const metaplexStore = readable(null, (set) => {
-	const metaplex = Metaplex.make(new Connection(clusterApiUrl('devnet')));
+	const metaplex = new Metaplex(new Connection(clusterApiUrl('devnet')));
 	set(metaplex);
 });
