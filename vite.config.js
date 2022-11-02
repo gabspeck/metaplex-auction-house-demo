@@ -2,7 +2,6 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
 import nodePolyfills from 'rollup-plugin-node-polyfills';
 import path from 'path';
-import inject from '@rollup/plugin-inject';
 
 /** @type {import('vite').UserConfig} */
 const config = {
@@ -17,10 +16,17 @@ const config = {
 	resolve: {
 		alias: {
 			$utils: path.resolve('src/utils/'),
-			stream: 'rollup-plugin-node-polyfills/polyfills/stream'
+			http: 'rollup-plugin-node-polyfills/polyfills/http',
+			url: 'rollup-plugin-node-polyfills/polyfills/url',
+			stream: 'rollup-plugin-node-polyfills/polyfills/stream',
+			events: 'rollup-plugin-node-polyfills/polyfills/events',
+			assert: 'assert',
+			crypto: 'crypto-browserify',
+			util: 'util'
 		}
 	},
 	define: {
+		'process.env': process.env ?? {},
 		'process.env.BROWSER': true,
 		'process.env.NODE_DEBUG': JSON.stringify(''),
 		global: 'globalThis'
@@ -31,7 +37,7 @@ const config = {
 			transformMixedEsModules: true
 		},
 		rollupOptions: {
-			plugins: [inject({ Buffer: ['buffer', 'Buffer'] }), nodePolyfills({ crypto: true })]
+			plugins: [nodePolyfills({crypto: true})]
 		}
 	},
 	server: {
